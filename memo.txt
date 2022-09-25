@@ -1,0 +1,16 @@
+tea
+id: integer
+name: string
+description: string
+caffeine_amount: caffeineと関連付け
+tea_type: typeと関連付け
+
+caffeine
+id: integer
+amount: string(多め、普通、少なめ)
+tea_id: teaと関連付け
+
+type
+id: integer
+name: string(日本茶、紅茶、ハーブティー)
+tea_id: teaと関連付け
