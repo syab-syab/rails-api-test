@@ -1,9 +1,25 @@
+[テストモデル]
+Color
+id: integer
+name: string
+ex) Red, Green, Yellow
+
+Something
+id: integer
+name: string
+color_id: integer(Colorと関連付け)
+ex) Apple, Muscat, Banana
+
+Postで新規投稿、Getでデータ取得をテスト
+
+-------------------------------------------------------------------------------
+
 tea
 id: integer
 name: string
 description: string
-caffeine_amount: caffeineと関連付け
-tea_type: typeと関連付け
+caffeine_id: caffeineと関連付け(references)
+type_id: typeと関連付け(references)
 
 caffeine
 id: integer
@@ -14,3 +30,5 @@ type
 id: integer
 name: string(日本茶、紅茶、ハーブティー)
 tea_id: teaと関連付け
+
+※関連付けるには多分[関連付けたいモデル名] ＋ [_id]と書かないとできないっぽい
