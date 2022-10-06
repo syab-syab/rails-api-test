@@ -10,6 +10,11 @@ class SomethingsController < ApplicationController
 
   def create
     @something = Something.new(something_params)
+    if @something.save
+      render json: { status: 'success', data: @something }
+    else
+      render json: { status: 'error', data: @something.errors}
+    end
   end
 
   def update
@@ -21,6 +26,6 @@ class SomethingsController < ApplicationController
   private
 
     def something_params
-      params.require(:color).permit(:name)
+      params.require(:something).permit(:name, :color_id)
     end
 end
