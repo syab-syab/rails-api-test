@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_121258) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_122306) do
+  create_table "caffeines", force: :cascade do |t|
+    t.string "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "colors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -25,5 +31,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_121258) do
     t.index ["color_id"], name: "index_somethings_on_color_id"
   end
 
+  create_table "teas", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "caffeine_id", null: false
+    t.integer "type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caffeine_id"], name: "index_teas_on_caffeine_id"
+    t.index ["type_id"], name: "index_teas_on_type_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "somethings", "colors"
+  add_foreign_key "teas", "caffeines"
+  add_foreign_key "teas", "types"
 end

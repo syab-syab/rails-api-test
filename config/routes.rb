@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # get 'teas/index'
+  # get 'types/index'
+  # get 'caffeines/index'
   # get 'somethings/index'
   # get 'colors/index'
   # get 'color/index'
@@ -8,5 +11,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :somethings
   resources :colors
-
+  resources :teas
+  resources :types
+  resources :caffeines
 end

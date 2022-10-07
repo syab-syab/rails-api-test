@@ -1,6 +1,6 @@
 class ColorsController < ApplicationController
   def index
-    colors = Color.all
+    @colors = Color.all
     render status: 200, json: {colors: colors}
   end
 
@@ -8,7 +8,13 @@ class ColorsController < ApplicationController
   end
 
   def create
+    # @color = Color.new(color_params)
     @color = Color.new(color_params)
+    if @color.save
+      render json: { status: 'success', data: @color }
+    else
+      render json: { status: 'error', data: @color.errors}
+    end
   end
 
   def update
