@@ -1,7 +1,7 @@
 class ColorsController < ApplicationController
   def index
     @colors = Color.all
-    render status: 200, json: {colors: colors}
+    render status: 200, json: {colors: @colors}
   end
 
   def show
