@@ -25,10 +25,14 @@ class ColorsController < ApplicationController
     @color = Color.find(params[:id])
     # rails7だとupdate_attributesが使えない
     @color.update(color_params)
+    # 成功時にはjson返した方が良い気がする
+    render json: @color
   end
 
   def destroy
     @color = Color.find(params[:id]).destroy
+    # 削除の時は返した方が良いのかどうか迷う
+    render json: { status: "success" }
   end
 
   private

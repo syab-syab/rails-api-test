@@ -1,7 +1,12 @@
 class CaffeinesController < ApplicationController
   def index
     @caffeines = Caffeine.all
-    render status: 200, json: {caffeine: @caffeines}
+    render status: 200, json: { status: 200, caffeine: @caffeines}
+  end
+
+  def show
+    @caffeine = Caffeine.find(params[:id])
+    render status: 200, json: @caffeine
   end
 
   def create
@@ -11,6 +16,22 @@ class CaffeinesController < ApplicationController
     else
       render json: { status: 'error', data: @caffeine.errors}
     end
+  end
+
+  # モデル(データ)によってはupdateとdestroyは要らないかもしれない
+  # 特にcaffeineやcolorはhas_manyで紐づいているから
+  # 削除されると関連付けされているデータも消されてしまう
+
+  def update
+    @caffeine = Caffeine.find(params[:id])
+    # バリデーションはnameだけで良いかも
+    @caffeine.update(caffeine_params)
+    render json: @caffeine
+  end
+
+  def destroy
+    @caffeine = Caffeine.find(params[:id]).destroy
+    render json: { status: "success" }
   end
 
   private

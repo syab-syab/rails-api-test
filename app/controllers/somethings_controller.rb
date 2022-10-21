@@ -1,11 +1,13 @@
 class SomethingsController < ApplicationController
   def index
     somethings = Something.all
-    render status: 200, json: { somethings: somethings }
+    render status: 200, json: { status: 200, somethings: somethings }
     # render status: 200, json: { users: users }
   end
 
   def show
+    @something = Something.find(params[:id])
+    render status: 200, json: @something
   end
 
   def create
@@ -18,9 +20,15 @@ class SomethingsController < ApplicationController
   end
 
   def update
+    @something = Something.find(params[:id])
+    # バリデーションはnameだけで良いかも
+    @something.update(something_params)
+    render json: @something
   end
 
   def destroy
+    @something = Something.find(params[:id]).destroy
+    render json: { status: "success" }
   end
 
   private
