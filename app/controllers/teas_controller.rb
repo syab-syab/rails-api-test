@@ -1,7 +1,7 @@
 class TeasController < ApplicationController
   def index
     @teas = Tea.all
-    render status: 200, json: { status: 200, tea: @teas }
+    render status: 200, json: { status: 200, teas: @teas }
   end
 
   def show

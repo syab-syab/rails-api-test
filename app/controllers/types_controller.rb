@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
   def index
     @types = Type.all
-    render status: 200, json: {type: @types}
+    render status: 200, json: {types: @types}
   end
 
   def create
