@@ -1,7 +1,8 @@
 class CaffeinesController < ApplicationController
   def index
     @caffeines = Caffeine.all
-    render status: 200, json: { status: 200, caffeines: @caffeines}
+    # render status: 200, json: { status: 200, caffeines: @caffeines}
+    render status: 200, json:@caffeines
   end
 
   def show
